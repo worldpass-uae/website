@@ -581,6 +581,17 @@
   .pp-modal .pp-contact p{margin:0;font-size:13.5px;line-height:1.7}
   .pp-modal .pp-contact strong{color:var(--navy);font-size:14px}
   @media(max-width:600px){.pp-modal{padding:28px 20px}.pp-modal h2{font-size:22px}}
+  .success-overlay{position:fixed;inset:0;background:rgba(30,58,95,.78);z-index:1000;opacity:0;pointer-events:none;transition:opacity .35s;display:flex;align-items:center;justify-content:center;padding:24px}
+  .success-overlay.on{opacity:1;pointer-events:auto}
+  .success-modal{background:var(--paper);border-radius:var(--r-lg);max-width:420px;width:100%;padding:48px 40px 40px;position:relative;text-align:center;transform:translateY(24px) scale(.97);transition:transform .35s cubic-bezier(.22,.85,.4,1)}
+  .success-overlay.on .success-modal{transform:translateY(0) scale(1)}
+  .success-close{position:absolute;top:14px;right:14px;background:transparent;border:1px solid var(--line);border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer;color:var(--navy);display:flex;align-items:center;justify-content:center;transition:background .2s}
+  .success-close:hover{background:var(--warm)}
+  .success-icon{width:64px;height:64px;margin:0 auto 24px;display:flex;align-items:center;justify-content:center}
+  .success-icon svg{width:64px;height:64px}
+  .success-modal h3{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--navy);margin:0 0 12px}
+  .success-modal p{font-size:15px;color:var(--steel);line-height:1.65;margin:0 0 28px}
+  @media(max-width:480px){.success-modal{padding:40px 24px 32px}.success-modal h3{font-size:24px}}
 
 </style>
 </head>
@@ -664,7 +675,7 @@
       <h1>A world open to those who don’t know <em>borders.</em></h1>
       <p class="sub">A UAE-based migration service helping individuals, families and businesses obtain <strong>citizenship, residency and visas worldwide</strong> with full legal support from application to approval.</p>
       <div class="hero-actions">
-        <a href="#quote" class="btn btn-primary">Get a consultation</a>
+        <a href="#contacts" class="btn btn-primary">Get a consultation</a>
         </div>
       <div class="hero-reply"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7V12L15 14"/></svg>We reply within 15 minutes</div>
       <div class="hero-stats">
@@ -747,7 +758,7 @@
             <li>Family included</li>
           </ul>
           <div class="svc-actions">
-            <a href="#quote" class="svc-consult">Get a consultation →</a>
+            <a href="#contacts" class="svc-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -765,7 +776,7 @@
             <li>Visa-free to 140+ countries</li>
           </ul>
           <div class="svc-actions">
-            <a href="#quote" class="svc-consult">Get a consultation →</a>
+            <a href="#contacts" class="svc-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -783,7 +794,7 @@
             <li>Tax-free jurisdiction</li>
           </ul>
           <div class="svc-actions">
-            <a href="#quote" class="svc-consult">Get a consultation →</a>
+            <a href="#contacts" class="svc-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -801,7 +812,7 @@
             <li>Portuguese-speaking nation</li>
           </ul>
           <div class="svc-actions">
-            <a href="#quote" class="svc-consult">Get a consultation →</a>
+            <a href="#contacts" class="svc-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -833,7 +844,7 @@
             <li>Path to citizenship</li>
           </ul>
           <div class="res-actions">
-            <a href="#quote" class="res-consult">Get a consultation →</a>
+            <a href="#contacts" class="res-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -852,7 +863,7 @@
             <li>No minimum stay</li>
           </ul>
           <div class="res-actions">
-            <a href="#quote" class="res-consult">Get a consultation →</a>
+            <a href="#contacts" class="res-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -871,7 +882,7 @@
             <li>Business-friendly</li>
           </ul>
           <div class="res-actions">
-            <a href="#quote" class="res-consult">Get a consultation →</a>
+            <a href="#contacts" class="res-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -890,7 +901,7 @@
             <li>Family sponsorship</li>
           </ul>
           <div class="res-actions">
-            <a href="#quote" class="res-consult">Get a consultation →</a>
+            <a href="#contacts" class="res-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -909,7 +920,7 @@
             <li>Path to permanent stay</li>
           </ul>
           <div class="res-actions">
-            <a href="#quote" class="res-consult">Get a consultation →</a>
+            <a href="#contacts" class="res-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -940,7 +951,7 @@
             <li>Fast processing</li>
           </ul>
           <div class="svc-actions">
-            <a href="#quote" class="svc-consult">Get a consultation →</a>
+            <a href="#contacts" class="svc-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -958,7 +969,7 @@
             <li>High approval rate</li>
           </ul>
           <div class="svc-actions">
-            <a href="#quote" class="svc-consult">Get a consultation →</a>
+            <a href="#contacts" class="svc-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -976,7 +987,7 @@
             <li>Priority processing</li>
           </ul>
           <div class="svc-actions">
-            <a href="#quote" class="svc-consult">Get a consultation →</a>
+            <a href="#contacts" class="svc-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -994,7 +1005,7 @@
             <li>Expert guidance</li>
           </ul>
           <div class="svc-actions">
-            <a href="#quote" class="svc-consult">Get a consultation →</a>
+            <a href="#contacts" class="svc-consult">Get a consultation →</a>
           </div>
         </div>
       </div>
@@ -1262,6 +1273,22 @@
   </div>
 </div>
 
+<!-- SUCCESS POPUP -->
+<div class="success-overlay" id="successOverlay" onclick="if(event.target===this)this.classList.remove('on')">
+  <div class="success-modal">
+    <button class="success-close" onclick="document.getElementById('successOverlay').classList.remove('on')" aria-label="Close">×</button>
+    <div class="success-icon">
+      <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="26" cy="26" r="25" stroke="var(--sand)" stroke-width="1.5"/>
+        <path d="M14 26l8 8 16-16" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h3>Request sent!</h3>
+    <p>Thank you — a senior consultant will get back to you within one working day.</p>
+    <button class="btn btn-primary" onclick="document.getElementById('successOverlay').classList.remove('on')" style="margin-top:8px">Got it</button>
+  </div>
+</div>
+
 <script>
 // Reveal on scroll
 (function(){
@@ -1293,8 +1320,8 @@
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    document.getElementById('formMsg').classList.add('on');
     form.reset();
+    document.getElementById('successOverlay').classList.add('on');
   });
 })();
 
@@ -1331,6 +1358,12 @@
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+    // reset
+    state.dest = ''; state.pax = '';
+    document.querySelectorAll('.qq-chip').forEach(c => c.classList.remove('on'));
+    if(phoneEl) phoneEl.value = '';
+    if(emailEl) emailEl.value = '';
+    document.getElementById('successOverlay').classList.add('on');
   });
 })();
 
