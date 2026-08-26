@@ -1402,11 +1402,9 @@
       dots.querySelectorAll('.carousel-dot').forEach(function(d,j){
         d.classList.toggle('on', j === cur);
       });
-      arrL.style.opacity = cur === 0 ? '0.3' : '1';
-      arrR.style.opacity = cur === n - 1 ? '0.3' : '1';
     }
     function goTo(idx){
-      idx = Math.max(0, Math.min(idx, n - 1));
+      idx = ((idx % n) + n) % n; // wrap around
       if(idx === cur && !animating) return;
       cur = idx;
       updateDots();
@@ -1446,8 +1444,6 @@
       });
     }, {root: grid, threshold: 0.6});
     cards.forEach(function(c){ observer.observe(c); });
-
-    arrL.style.opacity = '0.3';
 
     var autoPlay = true;
     var autoTimer = setInterval(function(){
