@@ -1600,6 +1600,43 @@ applyLang(currentLang);
   });
 })();
 
+// Clean URL router — removes # from navigation
+(function(){
+  var sections = ['citizenship','residences','visas','quote','expertise','contacts','get-consultation'];
+
+  function scrollToSection(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior:'smooth'});
+  }
+
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    var hash = link.getAttribute('href');
+    if (!hash || hash === '#') return;
+    var id = hash.substring(1);
+    if (sections.indexOf(id) === -1) return;
+    e.preventDefault();
+    scrollToSection(id);
+    history.pushState(null, '', '/' + id);
+  });
+
+  window.addEventListener('popstate', function() {
+    var path = location.pathname.substring(1);
+    if (sections.indexOf(path) !== -1) {
+      scrollToSection(path);
+    } else if (path === '' || path === '/') {
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+  });
+
+  // On page load — handle direct URL like /citizenship
+  var initPath = location.pathname.substring(1).replace(/\/$/,'');
+  if (initPath && sections.indexOf(initPath) !== -1) {
+    setTimeout(function(){ scrollToSection(initPath); }, 300);
+  }
+})();
+
 </script>
 
 <a href="https://t.me/world_pass_bot" target="_blank" rel="noopener" class="fab-tg" aria-label="Telegram bot"><svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></a>
