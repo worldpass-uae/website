@@ -641,7 +641,7 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="brand" aria-label="World Pass" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">World Pass</span></a>
+    <a href="#" class="brand" aria-label="World Pass" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'});history.pushState(null,'','/')"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">World Pass</span></a>
     <div class="nav-links">
       <a href="#citizenship" data-i18n="nav.citizenship">Citizenship</a>
       <a href="#residences" data-i18n="nav.residences">Residences</a>
@@ -1630,10 +1630,14 @@ applyLang(currentLang);
     }
   });
 
-  // On page load — handle direct URL like /citizenship
+  // On page load — handle direct URL like /citizenship or ?p=citizenship (from 404.html)
   var initPath = location.pathname.substring(1).replace(/\/$/,'');
-  if (initPath && sections.indexOf(initPath) !== -1) {
-    setTimeout(function(){ scrollToSection(initPath); }, 300);
+  var params = new URLSearchParams(location.search);
+  var fromRedirect = params.get('p');
+  var target = fromRedirect || initPath;
+  if (target && sections.indexOf(target) !== -1) {
+    if (fromRedirect) history.replaceState(null, '', '/' + target);
+    setTimeout(function(){ scrollToSection(target); }, 300);
   }
 })();
 
